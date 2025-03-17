@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 
-class NinjaCard extends StatelessWidget {
+class NinjaCard extends StatefulWidget {
   const NinjaCard({super.key});
 
+  @override
+  State<NinjaCard> createState() => _NinjaCardState();
+}
+
+class _NinjaCardState extends State<NinjaCard> {
+  int _ninjaLevel = 12;
+  String _ninja_name = 'Chun-Li';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,11 +29,11 @@ class NinjaCard extends StatelessWidget {
             Divider(height: 90.0, color: Colors.grey[800],), 
             Text('NAME', style: TextStyle(color: Colors.grey, letterSpacing: 2)),
             SizedBox(height: 10 ,),
-            Text('Chun-Li', style: TextStyle(color: Colors.amberAccent[200], letterSpacing: 2, fontSize: 28.0, fontWeight: FontWeight.bold)),
+            Text(_ninja_name, style: TextStyle(color: Colors.amberAccent[200], letterSpacing: 2, fontSize: 28.0, fontWeight: FontWeight.bold)),
             SizedBox(height: 30 ,),
             Text('CURRENT NINJA LEVEL', style: TextStyle(color: Colors.grey, letterSpacing: 2)),
             SizedBox(height: 10 ,),
-            Text('8', style: TextStyle(color: Colors.amberAccent[200], letterSpacing: 2, fontSize: 28.0, fontWeight: FontWeight.bold)),
+            Text('$_ninjaLevel', style: TextStyle(color: Colors.amberAccent[200], letterSpacing: 2, fontSize: 28.0, fontWeight: FontWeight.bold)),
             SizedBox(height: 30 ,), 
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -39,6 +46,18 @@ class NinjaCard extends StatelessWidget {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {setState(incrementNinjaLevel);}, 
+        backgroundColor: Colors.grey[800], 
+        child: Icon(Icons.add, color:  Colors.amberAccent[200])
+      ),
     );
   }
+
+  void incrementNinjaLevel() {
+    this._ninjaLevel++;
+  }
 }
+
+
+
